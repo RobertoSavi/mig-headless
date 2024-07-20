@@ -39,7 +39,7 @@ jobs:
 
     - name: Add references into hosts file
       run: |
-        echo "127.0.0.1 localhost trust-anchor.org relying-party.org cie-provider.org" | sudo tee -a /etc/hosts
+        echo "127.0.0.1 localhost burpsuite trust-anchor.org relying-party.org cie-provider.org" | sudo tee -a /etc/hosts
 
     - name: Build and run all components
       run: |
