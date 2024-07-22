@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Dockerfile for the helper service
-FROM webratio/httpd-with-curl:2.4.29
+FROM sroberto/httpd-curl-jq
 
 # Copy necessary scripts and files into the container
 COPY ./run_tests.sh /run_tests.sh
