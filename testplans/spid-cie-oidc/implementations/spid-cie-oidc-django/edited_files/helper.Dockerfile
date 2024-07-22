@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # Dockerfile for the helper service
 FROM webratio/httpd-with-curl:2.4.29
 

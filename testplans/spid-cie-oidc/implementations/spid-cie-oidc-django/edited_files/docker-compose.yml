@@ -106,7 +106,7 @@ services:
   helper:
     build:
       context: .
-      dockerfile: ./Dockerfile-helper
+      dockerfile: ./helper.Dockerfile
     networks:
       - oidcfed
     volumes:
