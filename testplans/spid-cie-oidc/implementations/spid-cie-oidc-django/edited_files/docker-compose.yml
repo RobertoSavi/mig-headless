@@ -111,7 +111,6 @@ services:
       - oidcfed
     volumes:
       - ./output:/output # To store output file locally
-    command: /bin/bash -c "sleep infinity"
 
 networks:
   oidcfed:
