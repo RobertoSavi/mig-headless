@@ -7,6 +7,8 @@ rm ./spid-cie-oidc-django/docker-compose.yml
 cp ./edited_files/docker-compose.yml ./spid-cie-oidc-django/
 rm ./spid-cie-oidc-django/Dockerfile
 cp ./edited_files/Dockerfile ./spid-cie-oidc-django/
+rm ./spid-cie-oidc-django/helper.Dockerfile
+cp ./edited_files/helper.Dockerfile ./spid-cie-oidc-django/
 cd spid-cie-oidc-django
 bash docker-prepare.sh
 
