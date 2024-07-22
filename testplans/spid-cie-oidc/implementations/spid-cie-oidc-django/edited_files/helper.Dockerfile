@@ -10,4 +10,4 @@ COPY ./test1.json /test1.json
 RUN chmod +x /run_tests.sh
 
 # Set the entrypoint to run the test script
-ENTRYPOINT ["/run_tests.sh", "/test1.json"]
+#ENTRYPOINT ["/run_tests.sh", "/test1.json"]
