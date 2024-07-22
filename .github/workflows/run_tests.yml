@@ -50,8 +50,8 @@ jobs:
     - name: Wait for the server to start
       run: sleep 15
 
-    - name: Test if localhost:3000 is reachable
-      run: curl -v http://localhost:3000
+    - name: Test if burpsuite:3000 is reachable
+      run: curl -v http://burpsuite:3000
 
     - name: Run a Docker image containing curl in the same network as I-MIG-T
       run: |
