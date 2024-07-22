@@ -103,5 +103,15 @@ services:
     cap_add:
       - NET_ADMIN
 
+  helper:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-helper
+    networks:
+      - oidcfed
+    volumes:
+      - ./output:/output # To store output file locally
+    command: /bin/bash -c "sleep infinity"
+
 networks:
   oidcfed:
