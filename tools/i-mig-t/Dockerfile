@@ -45,7 +45,7 @@ COPY ./config/mig-t/config.json /
 # Copy necessary scripts and files into the container
 COPY ./config/run_tests.sh /run_tests.sh
 COPY ./config/test1.json /test1.json
-COPY ../../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/input /
+COPY ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/input /
 # Make the script executable
 RUN chmod +x /run_tests.sh
 
