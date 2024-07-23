@@ -62,9 +62,9 @@ jobs:
       run: |
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         docker ps
-        docker exec spid-cie-oidc-django-helper-1 /run_tests.sh /test1.json
-        docker cp spid-cie-oidc-django-helper-1:/output.json output.json
-        docker stop spid-cie-oidc-django-helper-1
+        docker exec spid-cie-oidc-django-burpsuite-1 /run_tests.sh /test1.json
+        docker cp spid-cie-oidc-django-burpsuite-1:/output.json output.json
+        docker stop spid-cie-oidc-django-burpsuite-1
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
