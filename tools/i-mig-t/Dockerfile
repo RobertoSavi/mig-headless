@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 # Basic needs
-RUN apt update && apt install -y wget bzip2 libqt5gui5 libcanberra-gtk-module libcanberra-gtk3-module libnss3 libdbus-glib-1-2 openjdk-19-jdk
+RUN apt update && apt install -y wget bzip2 libqt5gui5 libcanberra-gtk-module libcanberra-gtk3-module libnss3 libdbus-glib-1-2 openjdk-19-jdk curl jq
 
 # ENV DISPLAY=$DISPLAY
 
@@ -45,6 +45,7 @@ COPY ./config/mig-t/config.json /
 # Copy necessary scripts and files into the container
 COPY ./config/run_tests.sh /run_tests.sh
 COPY ./config/test1.json /test1.json
+COPY ../../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/input /
 # Make the script executable
 RUN chmod +x /run_tests.sh
 
