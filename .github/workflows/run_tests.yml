@@ -31,6 +31,7 @@ jobs:
 
     - name: Run script to send API test requests
       run: |
+        cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
         docker exec spid-cie-oidc-django-burpsuite-1 /run_tests.sh /test1.json
         docker cp spid-cie-oidc-django-burpsuite-1:/output.json output.json
       
