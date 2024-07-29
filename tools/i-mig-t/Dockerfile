@@ -30,7 +30,7 @@ COPY ./config/burp/user-options.json /opt/BurpSuiteCommunity/
 
 # Preconfigure BurpSuite
 # TO ENABLE DEBUGGER, COMMENT THIS
-# RUN yes y | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
+# RUN yes | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
 
 # magic to avoid Docker caching the file even if they change
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
@@ -52,7 +52,7 @@ RUN chmod +x /run_tests.sh
 
 # Start configuration in headless mode
 # To disable headless mode remove -Djava.awt.headless=true
-CMD ["java", "-Djava.awt.headless=true", "-jar", \
-"/opt/BurpSuiteCommunity/burpsuite_community.jar", \
-"--user-config-file=/opt/BurpSuiteCommunity/user-options.json", \
-"--config-file=/opt/BurpSuiteCommunity/project-options.json"]
+CMD ["sh", "-c", "echo 'y' | java -Djava.awt.headless=true -jar \
+/opt/BurpSuiteCommunity/burpsuite_community.jar \
+--user-config-file=/opt/BurpSuiteCommunity/user-options.json \
+--config-file=/opt/BurpSuiteCommunity/project-options.json"]
