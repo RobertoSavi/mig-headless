@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 # Basic needs
 RUN apt update && apt install -y wget bzip2 libqt5gui5 libcanberra-gtk-module libcanberra-gtk3-module libnss3 libdbus-glib-1-2 openjdk-19-jdk curl jq
 
-# ENV DISPLAY=$DISPLAY
+#ENV DISPLAY=$DISPLAY
 
 # Burp installation
 RUN wget -O burpsuite_community_linux_v2023_7_1.sh 'https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.7.1&type=Linux' &&\
@@ -30,7 +30,7 @@ COPY ./config/burp/user-options.json /opt/BurpSuiteCommunity/
 
 # Preconfigure BurpSuite
 # TO ENABLE DEBUGGER, COMMENT THIS
-# RUN yes | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
+#RUN yes | /opt/BurpSuiteCommunity/BurpSuiteCommunity --user-config-file=user-options.json --config-file=project-options.json
 
 # magic to avoid Docker caching the file even if they change
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
@@ -38,17 +38,8 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 # Copy mig-t plugin into root
 COPY ./mig-t-beta-jar-with-dependencies.jar /root/
 
-# Copy message definitions and mig-t configurations into home
-# COPY ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/config/mig-t/msg_def.json /
-COPY ./config/mig-t/msg_def.json /
+# Copy mig-t configuration into home
 COPY ./config/mig-t/config.json /
-# Copy necessary scripts and files into the container
-COPY ./config/run_tests.sh /run_tests.sh
-COPY ./config/test1.json /test1.json
-# COPY ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/input /
-COPY ./config/input /input
-# Make the script executable
-RUN chmod +x /run_tests.sh
 
 # Start configuration in headless mode
 # To disable headless mode remove -Djava.awt.headless=true
