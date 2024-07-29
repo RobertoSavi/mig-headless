@@ -103,14 +103,5 @@ services:
     cap_add:
       - NET_ADMIN
 
-  helper:
-    build:
-      context: .
-      dockerfile: ./helper.Dockerfile
-    networks:
-      - oidcfed
-    volumes:
-      - ./output:/output # To store output file locally
-
 networks:
   oidcfed:
