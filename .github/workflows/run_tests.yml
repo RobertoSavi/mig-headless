@@ -10,36 +10,15 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-22.04
-
-    services:
-      docker:
-        image: docker:stable-dind
-        options: --privileged
-
-    env:
-      DOCKER_DRIVER: overlay2
-      DOCKER_TLS_CERTDIR: ""
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Docker repository
+    - name: Install Docker
       run: |
-        sudo apt-get update && sudo apt-get install -y git x11-xserver-utils curl ca-certificates lsb-release
-        sudo mkdir -p /etc/apt/keyrings
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc
-        sudo chmod a+r /etc/apt/keyrings/docker.asc
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
-
-    - name: Stop any running helper container
-      run: |
-        docker stop helper || true
-
-    - name: Add references into hosts file
-      run: |
-        echo "127.0.0.1 localhost burpsuite trust-anchor.org relying-party.org cie-provider.org" | sudo tee -a /etc/hosts
+        apt-get update && apt-get install -y sudo git curl
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sudo sh get-docker.sh
 
     - name: Build and run all components
       run: |
@@ -50,18 +29,8 @@ jobs:
     - name: Wait for the server to start
       run: sleep 15
 
-    #- name: Test if burpsuite:3000 is reachable
-    #  run: curl -v http://burpsuite:3000
-
-    #- name: Run a Docker image containing curl in the same network as I-MIG-T
-    #  run: |
-    #    docker network ls
-    #    docker run -d --rm --network spid-cie-oidc-django_oidcfed --name helper sroberto/httpd-curl-jq
-  #docker stop spid-cie-oidc-django-burpsuite-1
     - name: Run script to send API test requests
       run: |
-        cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
-        docker ps
         docker exec spid-cie-oidc-django-burpsuite-1 /run_tests.sh /test1.json
         docker cp spid-cie-oidc-django-burpsuite-1:/output.json output.json
       
