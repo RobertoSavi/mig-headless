@@ -37,5 +37,5 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
-        name: output.txt
+        name: output.json
         path: testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/output.json
