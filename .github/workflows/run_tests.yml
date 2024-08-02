@@ -23,6 +23,7 @@ jobs:
     - name: Build and run all components
       run: |
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
+        git --version
         chmod +x build_and_run.sh
         ./build_and_run.sh
 
