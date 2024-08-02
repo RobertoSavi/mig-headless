@@ -3,8 +3,10 @@ name: Build and Test
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -13,12 +15,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Docker
-      uses: docker/setup-buildx-action@v2
-
-
+      uses: docker/setup-buildx-action@v3
 
     - name: Build and run all components
       run: |
@@ -37,7 +37,7 @@ jobs:
         docker cp spid-cie-oidc-django-burpsuite-1:/output.json output.json
 
     - name: Upload test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: output.json
         path: testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/output.json
