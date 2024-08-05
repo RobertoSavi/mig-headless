@@ -43,12 +43,12 @@ COPY ./mig-t-beta-jar-with-dependencies.jar /root/
 COPY ./config/mig-t/msg_def.json /
 COPY ./config/mig-t/config.json /
 # Copy necessary scripts and files into the container
-COPY ./config/run_tests.sh /run_tests.sh
-COPY ./config/test1.json /test1.json
+#COPY ./config/run_tests.sh /run_tests.sh
+#COPY ./config/test1.json /test1.json
 # COPY ../../testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/input /
-COPY ./config/input /input
+#COPY ./config/input /input
 # Make the script executable
-RUN chmod +x /run_tests.sh
+#RUN chmod +x /run_tests.sh
 
 # Start configuration in headless mode
 # To disable headless mode remove -Djava.awt.headless=true

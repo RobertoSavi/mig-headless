@@ -9,6 +9,9 @@ rm ./spid-cie-oidc-django/Dockerfile
 cp ./edited_files/Dockerfile ./spid-cie-oidc-django/
 cp ./run_tests.sh ./spid-cie-oidc-django/
 cp ./test1.json ./spid-cie-oidc-django/
+rm -rf ./spid-cie-oidc-django/input
+mkdir -p ./spid-cie-oidc-django/input
+cp -r ./input/* ./spid-cie-oidc-django/input/
 cd spid-cie-oidc-django
 bash docker-prepare.sh
 
