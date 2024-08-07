@@ -17,7 +17,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-
     - name: Build and run all components
       run: |
         cd testplans/spid-cie-oidc/implementations/spid-cie-oidc-django/
